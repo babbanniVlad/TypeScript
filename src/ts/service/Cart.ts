@@ -7,6 +7,28 @@ export default class Cart {
         this._items.push(item);
     }
 
+    sum(property?:number): number {
+        let sum: number = 0;
+        for (let e of this._items) {
+            if(property) {
+                let percent: number = e.price / 100 * property;
+                sum += e.price - percent;
+            } else {
+                sum += e.price;
+            }
+        }
+        
+        return sum
+    }
+
+    remove(id:number): void {
+        for (let e in this._items) {
+            if (id === this._items[e].id) {
+                this._items.splice(Number(e), 1);
+            }
+        }
+    }
+
     get items(): Buyable[] {
         return [...this._items]; 
     }

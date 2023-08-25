@@ -8,7 +8,12 @@ export default class Movie implements Buyable {
         readonly country: string,
         readonly slogan: string,
         readonly genre: string,
-        readonly movieTime: number | string,
-        readonly price: number
-    ) {}
+        readonly movieTime: string,
+        readonly price: number,
+    ) {
+        const minutesTime:string = this.movieTime;
+        const hours:number = Math.floor(parseInt(minutesTime) / 60);
+        const minutes:number = parseInt(minutesTime) % 60;
+        this.movieTime = `${minutesTime} мин./ ${hours}:${minutes}`;
+    }
 }
