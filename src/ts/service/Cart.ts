@@ -8,17 +8,17 @@ export default class Cart {
     }
 
     sum(property?:number): number {
-        let sum: number = 0;
+        const sum: Array<number> = [];
         for (let e of this._items) {
             if(property) {
                 let percent: number = e.price / 100 * property;
-                sum += e.price - percent;
+                sum.push(e.price - percent);
             } else {
-                sum += e.price;
+                sum.push(e.price);
             }
         }
         
-        return sum
+        return sum.reduce((sum, a) => sum + a, 0)
     }
 
     remove(id:number): void {
